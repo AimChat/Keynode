@@ -235,7 +235,10 @@ extension Keynode {
         targetView?.removeGestureRecognizer(panGesture)
 
         let info = notification.info
-        if let rect = info.endFrame {
+        guard let begin = info.beginFrame?.origin.y else { return }
+        guard let end = info.endFrame?.origin.y else { return }
+        
+        if let rect =  begin.isLess(than: end ) ? info.endFrame : info.beginFrame {
             willShowAnimation(false, rect: rect, duration: info.duration, options: info.curve.union(.overrideInheritedDuration))
         }
     }
