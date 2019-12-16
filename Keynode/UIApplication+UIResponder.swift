@@ -8,7 +8,7 @@
 
 public extension UIApplication {
     /// UIResponderBecomeFirstResponder notification by first responder
-    public func needsNotificationFromFirstResponder(_ from: AnyObject?) {
+    func needsNotificationFromFirstResponder(_ from: AnyObject?) {
         sendAction(#selector(UIResponder.firstResponder(_:)), to: nil, from: from, for: nil)
     }
 }
