@@ -243,3 +243,19 @@ extension Keynode {
         }
     }
 }
+
+extension Keynode {
+    public func subscribeAll() {
+        NotificationCenter.default.addObserver(self, selector: #selector(Keynode.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Keynode.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Keynode.keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Keynode.didBecomeFirstResponder(_:)), name: UIResponder.becomeFirstResponder, object: nil)
+    }
+    
+    public func unsubscribeAll() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.becomeFirstResponder, object: nil)
+    }
+}
