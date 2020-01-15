@@ -210,13 +210,13 @@ extension Keynode: UIGestureRecognizerDelegate {
 
 // MARK: - NotificationCenter Methods
 extension Keynode {
-    @objc public func didBecomeFirstResponder(_ notification: Notification) {
+    @objc func didBecomeFirstResponder(_ notification: Notification) {
         if let responder = notification.object as? UIResponder {
             setResponder(responder)
         }
     }
 
-    @objc public func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         UIApplication.shared.needsNotificationFromFirstResponder(self)
 
         let info = notification.info
@@ -225,13 +225,13 @@ extension Keynode {
         }
     }
 
-    @objc public func keyboardDidShow(_ notification: Notification) {
+    @objc func keyboardDidShow(_ notification: Notification) {
         if firstResponder != nil && isGestureHandlingEnabled == true && isGesturePanningEnabled == true {
             targetView?.addGestureRecognizer(panGesture)
         }
     }
 
-    @objc public func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         targetView?.removeGestureRecognizer(panGesture)
 
         let info = notification.info
